@@ -3,11 +3,12 @@
 // Importing required modules.
 const categoryModel = require('../models/category.model');
 
+
 /****************************************************
  * Checks the category with this name is already    *    
  * registered or not.                               *
  ****************************************************/
-exports.checkCategoryByName = async (req, res, next) => {
+const checkCategoryByName = async (req, res, next) => {
     try {
         var category_name = req['body']['category_name'];
         var category_description = req['body']['category_description'];
@@ -31,7 +32,7 @@ exports.checkCategoryByName = async (req, res, next) => {
 /****************************************************
  * Checks the category by product_category_id.      *
  ****************************************************/
-exports.checkCategoryById = async (req, res, next) => {
+const checkCategoryById = async (req, res, next) => {
     try {
         var category_id = req['body']['product_category_id'];
         await categoryModel.find({ _id: category_id }, (error, foundCategory) => {
@@ -42,5 +43,15 @@ exports.checkCategoryById = async (req, res, next) => {
     } catch (error) {
         return res.status(401).json({ status: 401, message: "Something wents wrong.", error: error });
     }
+}
+/****************************************END*************************************/
+
+
+// Exporting Category Middleware.
+return module.exports = {
+
+    checkCategoryByName: checkCategoryByName,
+    checkCategoryById: checkCategoryById
+
 }
 /****************************************END*************************************/

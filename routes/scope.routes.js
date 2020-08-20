@@ -2,8 +2,8 @@
 
 // Importing required modules.
 const scopeController = require('../controllers/scope.controller');
-const checkAdminMiddleware = require('../middlewares/checkAdmin');
-
+const userMiddleware = require('../middlewares/user.middleware');
+const scopeMiddleware = require('../middlewares/scope.middleware');
 const oAuth2Server = require('node-oauth2-server');
 const authModel = require('../authorization/model');
 const express = require('express');
@@ -21,7 +21,7 @@ app.use(app.oauth.errorHandler());
 /****************************************************
  * Routes for the scopes.                           *
  ****************************************************/
-scopeRoutes.post('/addScope', app.oauth.authorise(), app.use(checkAdminMiddleware.checkAdminOrNot), scopeController.addScope);
+scopeRoutes.post('/addScope', app.oauth.authorise(), userMiddleware.checkAdmin, scopeMiddleware.isScopeFieldsValid, scopeController.addScope);
 
 // Exporting scope routes.
 module.exports = scopeRoutes;

@@ -3,6 +3,7 @@
 // Importing required modules.
 const bcrypt = require('bcrypt');
 
+
 /****************************************************
  * Decrypt the password.                             *
  ****************************************************/

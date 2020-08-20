@@ -2,7 +2,7 @@
 
 // Importing required modules.
 const categoryModel = require('../models/category.model');
-const userHelper = require('../helpers/user_methods');
+
 
 /****************************************************
  * Create category API.                             *

@@ -2,8 +2,8 @@
 
 // Importing required modules.
 const categoryController = require('../controllers/category.controller');
-const checkAdminMiddleware = require('../middlewares/checkAdmin');
-const checkCategoryMiddleware = require('../middlewares/checkCategoryInDb');
+const userMiddleware = require ('../middlewares/user.middleware');
+const categoryMiddleware = require('../middlewares/category.middleware');
 
 const oAuth2Server = require('node-oauth2-server');
 const authModel = require('../authorization/model');
@@ -22,7 +22,7 @@ app.use(app.oauth.errorHandler());
 /****************************************************
  * Routes for the categories.                       *
  ****************************************************/
-categoryRoutes.post('/create_category', app.oauth.authorise(), checkAdminMiddleware.checkAdminOrNot, checkCategoryMiddleware.checkCategoryByName, categoryController.create_category);
+categoryRoutes.post('/create_category', app.oauth.authorise(), userMiddleware.checkAdmin, categoryMiddleware.checkCategoryByName , categoryController.create_category);
 
 // Exporting category routes.
 module.exports = categoryRoutes;

@@ -4,6 +4,7 @@
 const authUserModel = require('../models/auth_user.model');
 const decryptPassHelper = require('../helpers/decrypt_password');
 
+
 /****************************************************
  * Checks whether user record is there or not in db.*
  ****************************************************/

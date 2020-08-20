@@ -1,12 +1,11 @@
 'use strict';
 
 // Importing required modules.
-const checkProductMiddleware = require('../middlewares/checkProductInUserCart');
+const productMiddleware = require('../middlewares/product.middleware');
 const userCartController = require('../controllers/user_cart.controller');
-const checkScopeMiddleware = require('../middlewares/checkScope');
-const checkProductValidMiddleware = require('../middlewares/checkProductInDb');
-const tokenAndUserMiddleware = require('../middlewares/checkTokenAndUserId');
-
+const scopeMiddleware = require('../middlewares/scope.middleware');
+const userMiddleware = require('../middlewares/user.middleware');
+const userCartMiddleware = require('../middlewares/user-cart.middleware')
 const express = require('express');
 const userCartRoutes = express.Router();
 const oAuth2Server = require('node-oauth2-server');
@@ -24,8 +23,8 @@ app.use(app.oauth.errorHandler());
 /****************************************************
  * Routes for  the user cart.                       *
  ****************************************************/
-userCartRoutes.post('/addProductToUserCart', app.oauth.authorise(), tokenAndUserMiddleware.checkTokenAndUserId, checkScopeMiddleware.scopeCheck, checkProductMiddleware.checkProductInUserCart,checkProductValidMiddleware.checkProductIsValidByProductId, userCartController.addProductToUserCart);
-userCartRoutes.delete('/deleteProductFromUserCart', app.oauth.authorise(), checkScopeMiddleware.scopeCheck, userCartController.deleteProductFromUserCart);
+userCartRoutes.post('/addProductToUserCart', app.oauth.authorise(), userMiddleware.checkTokenAndUserId, scopeMiddleware.scopeCheck, userCartMiddleware.checkProductInUserCart,productMiddleware.checkProductById, userCartController.addProductToUserCart);
+userCartRoutes.delete('/deleteProductFromUserCart', app.oauth.authorise(), scopeMiddleware.scopeCheck, userCartController.deleteProductFromUserCart);
 userCartRoutes.get('/getAllProductOfUserByUserId', app.oauth.authorise(), userCartController.getAllProductOfUserByUserId);
 
 // Exporting user cart routes.

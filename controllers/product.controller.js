@@ -3,6 +3,7 @@
 // Importing required modules.
 const productModel = require('../models/product.model');
 
+
 /****************************************************
  * Create product API.                              *
  ****************************************************/
@@ -36,7 +37,7 @@ exports.create_product = async (req, res) => {
 exports.delete_product = (req, res) => {
     try {
         const product_id = req['query']['id'];
-        if (!product_id || product_id == "") return res.status(404).json({ status: 404, message: "Product id not found" });
+        if (!product_id) return res.status(404).json({ status: 404, message: "Product id not found" });
         productModel.remove({ _id: product_id }, (error, deletedProduct) => {
             if (error) return res.status(401).json({ status: 401, message: "Check your product id", error: error });
             else if (deletedProduct['deletedCount'] == 0) return res.status(401).json({ status: 401, message: "Check your productId" });
@@ -55,7 +56,7 @@ exports.delete_product = (req, res) => {
 exports.getProductByProductId = (req, res) => {
     try {
         const product_id = req['query']['id'];
-        if (!product_id || product_id == "") return res.status(404).json({ status: 404, message: "Product id not found" });
+        if (!product_id) return res.status(404).json({ status: 404, message: "Product id not found" });
         productModel.find({ _id: product_id }).populate('product_category_id').exec((error, foundProduct) => {
             if (error) return res.status(401).json({ status: 401, message: "Check your product id", error: error });
             else if (foundProduct['length'] === 1) return res.status(200).json({ status: 200, data: foundProduct[0] });

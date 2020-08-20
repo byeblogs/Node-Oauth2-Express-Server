@@ -67,16 +67,15 @@ function saveAccessToken(accessToken, clientID, expires, user, callback) {
  * Check for the user token in Header.              *
  ****************************************************/
 function getAccessToken(bearerToken, callback) {
-
+    
     //try and get the userID from the db using the bearerToken
     accessTokenHelper.checkTokenInDB(bearerToken)
-        .then((userId) => {
-            if (userId == null) callback(false, null);
+        .then((userDetails) => {
+            if (userDetails == null) callback(false, null);
             else {
                 const accessToken = {
-                    user: {
-                        id: userId,
-                    },
+                    user: userDetails.get('userId'),
+                    token:userDetails,
                     expires: null
                 }
                 callback(false, accessToken);
@@ -87,8 +86,9 @@ function getAccessToken(bearerToken, callback) {
 }
 /****************************************END*************************************/
 
-
-const model = {
+// Exporting module.
+return module.exports = {
+    
     getClient: getClient,
 
     grantTypeAllowed: grantTypeAllowed,
@@ -99,7 +99,4 @@ const model = {
 
     getAccessToken: getAccessToken
 }
-/****************************************END*************************************/
-
-// Exporting module.
-module.exports = model;
+/****************************************END*************************************/;
