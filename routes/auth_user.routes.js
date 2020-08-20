@@ -1,9 +1,10 @@
 'use strict';
 
 // Importing required modules.
+const userMiddleware = require ('../middlewares/user.middleware');
 const authUserController = require('../controllers/auth_user.controller');
-const enc_pass_middleware = require('../middlewares/encrypt_password');
 const customMiddleware = require('../helpers/access-token');
+
 const express = require('express');
 const authRoutes = express.Router();
 const oAuth2Server = require('node-oauth2-server');
@@ -21,7 +22,7 @@ app.use(app.oauth.errorHandler());
 /****************************************************
  * Routes for the auth.                             *
  ****************************************************/
-authRoutes.post('/register', app.use(enc_pass_middleware.encryptPassword), authUserController.register);
+authRoutes.post('/register', userMiddleware.encryptPassword, userMiddleware.checkUserAlreadyExist, authUserController.register);
 authRoutes.post('/login',customMiddleware.setScope, app.oauth.grant());
 
 // Exporting auth user routes.

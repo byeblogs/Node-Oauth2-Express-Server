@@ -23,7 +23,7 @@ exports.saveToken = (accessToken, userId) => {
     });
     return new Promise((resolve, reject) => {
         try {
-            accessTokenObj.save(accessTokenObj, (error, insertedToken) => {
+            accessTokenObj.save(accessTokenObj,(error, insertedToken) => {
                 if (error) reject(error);
                 else resolve();
             });
