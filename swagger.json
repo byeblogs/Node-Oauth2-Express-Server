@@ -1,0 +1,254 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Welcome to Oauth 2.0 Express API's",
+      "description": "Outh2_express_node is a project based on outh 2.0. The credentials is authorisede and will generate a access-token using outh 2.0.\n The access-token in this case is the primary suppliment to the API that will authorise a user and give sccess to the API.\n The scope of the access-token is also be checked to access that API.\n\nFor more details on this project , please visit readme file :-\n https://github.com/thezaidsheikh/Outh-Product-NodeJS-cz/blob/master/README.md"
+    },
+    "host": "localhost:5000",
+    "basePath": "",
+    "tags": [
+      {
+        "name": "AuthUsers",
+        "description": "API for the User related operations."
+      },
+      {
+        "name": "Category",
+        "description": "API for the Category related operations."
+      }
+    ],
+    "schemes": [
+      "http"
+   ],
+    "consumes": [
+      "application/x-www-form-urlencoded"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+
+      "/auth/register": {
+        "post": {
+          "tags": [
+            "AuthUsers"
+          ],
+          "description": "Create new user in system",
+          "parameters": [
+            {
+              "name": "username",
+              "in": "formData",
+              "type":"string",
+              "required":true,
+              "description": "username of the user."
+            },
+            {
+              "name": "password",
+              "in": "formData",
+              "type":"string",
+              "required":true,
+              "description": "password of the user."
+            },
+            {
+              "name": "phone",
+              "in": "formData",
+              "type":"number",
+              "required":true,
+              "description": "phone number of the user."
+            },
+            {
+              "name": "isAdmin",
+              "in": "formData",
+              "type":"boolean",
+              "required":false,
+              "default":false,
+              "description": "true to create admin user, else false."
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "User registered Successfull.",
+              "schema": {
+                "$ref": "#/definitions/user_response"
+              }
+            }
+          }
+        }
+      },
+
+      "/auth/login": {
+        "post": {
+          "tags": [
+            "AuthUsers"
+          ],
+          "description": "Login registered user and give access-token",
+          "parameters": [
+            {
+              "name": "username",
+              "in": "formData",
+              "type":"string",
+              "required":true,
+              "description": "username of the user."
+            },
+            {
+              "name": "password",
+              "in": "formData",
+              "type":"string",
+              "required":true,
+              "description": "password of the user."
+            },
+            {
+              "name": "client_id",
+              "in": "formData",
+              "type":"string",
+              "required":true,
+              "description": "client_id should be null.",
+              "default":"null"
+            },
+            {
+              "name": "client_secret",
+              "in": "formData",
+              "type":"string",
+              "required":true,
+              "description": "client_secret should be null.",
+              "default":"null"
+            },
+            {
+              "name": "grant_type",
+              "in": "formData",
+              "type":"string",
+              "required":true,
+              "description": "grant_type should be password.",
+              "default":"password"
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "User login Successfull",
+              "schema": {
+                "$ref": "#/definitions/user_response"
+              }
+            }
+          }
+        }
+      },
+
+      "/categories/create_category": {
+        "post": {
+          "tags": [
+            "Category"
+          ],
+          "description": "Create category to add it on the Product",
+          "parameters": [
+            {
+              "name": "category_name",
+              "in": "formData",
+              "type":"string",
+              "required":true,
+              "description": "add category name"
+            },
+            {
+              "name": "category_description",
+              "in": "formData",
+              "type":"string",
+              "required":true,
+              "description": "description about category."
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "User login Successfull",
+              "schema": {
+                "$ref": "#/definitions/user_response"
+              }
+            }
+          }
+        }
+      }
+
+    },
+    "definitions": {
+
+      "user_registration": {
+        "required": [
+          "username",
+          "password",
+          "phone"
+        ],
+        "properties": {
+          "username": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "password": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "number"
+          },
+          "isAdmin": {
+            "type":"boolean",
+            "default":false
+          }
+        }
+      },
+
+      "user_login": {
+        "required": [
+          "username",
+          "password",
+          "client_id",
+          "client_secret",
+          "grant_type"
+        ],
+        "properties": {
+          "username": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "password": {
+            "type": "string"
+          },
+          "client_id":{
+            "type": "string"
+          },
+          "client_secret":{
+            "type": "string"
+          },
+          "grant_type":{
+            "type": "string",
+            "default":"password"
+          }
+      }
+      },
+
+      "user_response":{
+        "required": [
+          "status",
+          "message"
+        ],
+        "properties":{
+          "status":{
+            "type":"number",
+            "default":200
+          },
+          "message":{
+            "type":"string"
+          }
+        }
+      },
+    "Users": {
+      "type": "array",
+      "$ref": "#/definitions/user_registration"
+    }
+  }
+}

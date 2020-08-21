@@ -12,7 +12,8 @@ var userCartRoutes = require('./routes/user_cart.routes');
 var scopeRoutes = require('./routes/scope.routes');
 const oAuth2Server = require('node-oauth2-server');
 const authModel = require('./authorization/model');
-
+var swaggerUi = require('swagger-ui-express'),
+swaggerDocument = require('./swagger.json');
 
 // Initializes express server.
 var app = express();
@@ -26,8 +27,9 @@ app.oauth = oAuth2Server({
 
 // MiddleWares & Routes. 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/auth', authRoutes);
 app.use('/categories', categoryRoutes);
 app.use('/products', productRoutes);

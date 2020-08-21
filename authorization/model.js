@@ -11,7 +11,7 @@ var app = express();
  * Check client_Id and secret_Id.                     *
  ****************************************************/
 function getClient(clientID, clientSecret, callback) {
-
+    debugger
     const client = {
         clientID,
         clientSecret,
