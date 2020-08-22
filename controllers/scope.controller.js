@@ -12,7 +12,6 @@ const scopeModel = require('../models/scope_access_token');
  ****************************************************/
 exports.addScope = async (req, res) => {
     try {
-        debugger
         var isScopeExists = req['isScopeExists'];
         if (isScopeExists !== false) {
 

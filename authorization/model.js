@@ -11,7 +11,6 @@ var app = express();
  * Check client_Id and secret_Id.                     *
  ****************************************************/
 function getClient(clientID, clientSecret, callback) {
-    debugger
     const client = {
         clientID,
         clientSecret,
@@ -67,7 +66,6 @@ function saveAccessToken(accessToken, clientID, expires, user, callback) {
  * Check for the user token in Header.              *
  ****************************************************/
 function getAccessToken(bearerToken, callback) {
-    
     //try and get the userID from the db using the bearerToken
     accessTokenHelper.checkTokenInDB(bearerToken)
         .then((userDetails) => {

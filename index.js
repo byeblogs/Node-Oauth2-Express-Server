@@ -29,12 +29,12 @@ app.oauth = oAuth2Server({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument,{ "showExplorer": true }));
 app.use('/auth', authRoutes);
 app.use('/categories', categoryRoutes);
 app.use('/products', productRoutes);
-app.use('/user_cart', userCartRoutes);
-app.use('/scope', scopeRoutes);
+app.use('/user_carts', userCartRoutes);
+app.use('/scopes', scopeRoutes);
 app.use('/', (req, res) => {
     res.status(404).json({ status: 404, message: 'Sorry, API does not exist!' });
 });
