@@ -13,7 +13,7 @@ var scopeRoutes = require('./routes/scope.routes');
 const oAuth2Server = require('node-oauth2-server');
 const authModel = require('./authorization/model');
 var swaggerUi = require('swagger-ui-express'),
-swaggerDocument = require('./swagger.json');
+    swaggerDocument = require('./swagger.json');
 
 // Initializes express server.
 var app = express();
@@ -29,7 +29,7 @@ app.oauth = oAuth2Server({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument,{ "showExplorer": true }));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, { "showExplorer": true }));
 app.use('/auth', authRoutes);
 app.use('/categories', categoryRoutes);
 app.use('/products', productRoutes);
@@ -46,6 +46,6 @@ app.listen(PORT, (err, done) => {
     if (!err) console.log('started your server');
     if (err) console.log('something went wrong :' + err);
 });
- 
+
 // Exporting the app.js file.
 module.exports = app;

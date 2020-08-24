@@ -2,23 +2,31 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "Welcome to Oauth 2.0 Express API's",
-    "description": "Outh2_express_node is a project based on outh 2.0. The credentials is authorisede and will generate a access-token using outh 2.0.\n The access-token in this case is the primary suppliment to the API that will authorise a user and give sccess to the API.\n The scope of the access-token is also be checked to access that API.\n\nFor more details on this project , please visit readme file :-\n https://github.com/thezaidsheikh/Outh-Product-NodeJS-cz/blob/master/README.md"
+    "title": "Welcome to Node Oauth2 Express Server",
+    "description": "Outh2_express_node is a project based on outh 2.0. The credentials is authorisede and will generate a access-token using outh 2.0.\n The access-token in this case is the primary suppliment to the API that will authorise a user and give sccess to the API.\n The scope of the access-token is also be checked to access that API.\n\n **For more details on this project , please visit this [file](https://github.com/thezaidsheikh/Outh-Product-NodeJS-cz/blob/master/README.md)**.\n\n First _Register_ and then Login using _Authorize_, It will automatically generate access-token and in every API this access-token is automatically passed in header. "
   },
   "host": "localhost:5000",
   "basePath": "",
   "tags": [
     {
       "name": "AuthUsers",
-      "description": "API for the User related operations."
+      "description": "API for the User related operations (_Any User_).  _**Find out more about [AuthUser](https://github.com/thezaidsheikh/Outh-Product-NodeJS-cz/blob/master/README.md#test2-this) API**_."
     },
     {
       "name": "Category",
-      "description": "API for the Category related operations."
+      "description": "API for the Category related operations (_Only Admin_).  _**Find out more about [Category](https://github.com/thezaidsheikh/Outh-Product-NodeJS-cz/blob/master/README.md#test2-this) API**_."
     },
     {
       "name": "Product",
-      "description": "API for the Product related operations."
+      "description": "API for the Product related operations.  _**Find out more about [Product](https://github.com/thezaidsheikh/Outh-Product-NodeJS-cz/blob/master/README.md#test2-this) API**_."
+    },
+    {
+      "name": "Scope",
+      "description": "API for the Scope related operations (_Only Admin_).  _**Find out more about [Scope](https://github.com/thezaidsheikh/Outh-Product-NodeJS-cz/blob/master/README.md#test2-this) API**_."
+    },
+    {
+      "name": "User Cart",
+      "description": "API for the User Cart related operations (_Any User_).  _**Find out more about [User Cart](https://github.com/thezaidsheikh/Outh-Product-NodeJS-cz/blob/master/README.md#test2-this) API**_."
     }
   ],
   "schemes": [
@@ -57,6 +65,7 @@
             "in": "formData",
             "type": "number",
             "required": true,
+            "example": 1234567890,
             "description": "phone number of the user."
           },
           {
@@ -73,66 +82,7 @@
         ],
         "responses": {
           "200": {
-            "description": "User registered Successfull.",
-            "schema": {
-              "$ref": "#/definitions/user_response"
-            }
-          }
-        }
-      }
-    },
-    "/auth/login": {
-      "post": {
-        "tags": [
-          "AuthUsers"
-        ],
-        "description": "Login registered user and give access-token",
-        "parameters": [
-          {
-            "name": "username",
-            "in": "formData",
-            "type": "string",
-            "required": true,
-            "description": "username of the user."
-          },
-          {
-            "name": "password",
-            "in": "formData",
-            "type": "string",
-            "required": true,
-            "description": "password of the user."
-          },
-          {
-            "name": "client_id",
-            "in": "formData",
-            "type": "string",
-            "required": true,
-            "description": "client_id should be null.",
-            "default": "null"
-          },
-          {
-            "name": "client_secret",
-            "in": "formData",
-            "type": "string",
-            "required": true,
-            "description": "client_secret should be null.",
-            "default": "null"
-          },
-          {
-            "name": "grant_type",
-            "in": "formData",
-            "type": "string",
-            "required": true,
-            "description": "grant_type should be password.",
-            "default": "password"
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "User login Successfull",
+            "description": "Successfull.",
             "schema": {
               "$ref": "#/definitions/user_response"
             }
@@ -157,6 +107,7 @@
             "in": "formData",
             "type": "string",
             "required": true,
+            "example": "Vehicles",
             "description": "add category name"
           },
           {
@@ -164,6 +115,7 @@
             "in": "formData",
             "type": "string",
             "required": true,
+            "example": "Contain cars and bike",
             "description": "description about category."
           }
         ],
@@ -172,7 +124,7 @@
         ],
         "responses": {
           "200": {
-            "description": "User login Successfull",
+            "description": "Successfull",
             "schema": {
               "$ref": "#/definitions/user_response"
             }
@@ -182,7 +134,7 @@
     },
     "/products/create_product": {
       "post": {
-        "description": "Add a new Product.",
+        "description": "Add a new Product (_Only Admin_).",
         "tags": [
           "Product"
         ],
@@ -226,7 +178,7 @@
         ],
         "responses": {
           "200": {
-            "description": "User login Successfull",
+            "description": "Successfull",
             "schema": {
               "$ref": "#/definitions/user_response"
             }
@@ -236,7 +188,7 @@
     },
     "/products/delete_product": {
       "delete": {
-        "description": "Delete a Product.",
+        "description": "Delete a Product (_Only Admin_).",
         "tags": [
           "Product"
         ],
@@ -259,7 +211,7 @@
         ],
         "responses": {
           "200": {
-            "description": "User login Successfull",
+            "description": "Successfull",
             "schema": {
               "$ref": "#/definitions/user_response"
             }
@@ -269,7 +221,7 @@
     },
     "/products/getProductByProductId": {
       "get": {
-        "description": "Delete a Product.",
+        "description": "Delete a Product (_Any User_).",
         "tags": [
           "Product"
         ],
@@ -292,7 +244,172 @@
         ],
         "responses": {
           "200": {
-            "description": "User login Successfull",
+            "description": "Successfull",
+            "schema": {
+              "$ref": "#/definitions/user_response"
+            }
+          }
+        }
+      }
+    },
+    "/scopes/addScope": {
+      "post": {
+        "tags": [
+          "Scope"
+        ],
+        "description": "Add a new Scope. If scopeNumber is already exists then update.\n **Currently three Api's have scope check, which is already defines in permissions**",
+        "security": [
+          {
+            "oauth_login": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "scopeNumber",
+            "in": "formData",
+            "type": "string",
+            "required": true,
+            "example": "A",
+            "description": "define any scope name"
+          },
+          {
+            "name": "permissions",
+            "in": "formData",
+            "type": "array",
+            "required": true,
+            "example": "post 'http://localhost:5000/user_carts/addProductToUserCart'",
+            "description": "define a scope permissions.",
+            "uniqueItems": true,
+            "collectionFormat": "multi",
+            "items": {
+              "type": "string"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfull",
+            "schema": {
+              "$ref": "#/definitions/user_response"
+            }
+          }
+        }
+      }
+    },
+    "/user_Carts/addProductToUserCart": {
+      "post": {
+        "tags": [
+          "User Cart"
+        ],
+        "description": "Add a Product in user cart.",
+        "security": [
+          {
+            "oauth_login": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "formData",
+            "type": "string",
+            "required": true,
+            "example": "5f3fd3a4b6f932484ed2469b",
+            "description": "insert userId"
+          },
+          {
+            "name": "product_id",
+            "in": "formData",
+            "type": "string",
+            "required": true,
+            "example": "5f3fd3a4b6f932484ed2469b",
+            "description": "insert product_id."
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfull",
+            "schema": {
+              "$ref": "#/definitions/user_response"
+            }
+          }
+        }
+      }
+    },
+    "/user_Carts/getAllProductOfUserByUserId": {
+      "get": {
+        "tags": [
+          "User Cart"
+        ],
+        "description": "Get all product that a user has added in its cart.",
+        "security": [
+          {
+            "oauth_login": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "example": "5f3fd3a4b6f932484ed2469b",
+            "description": "insert userId"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfull",
+            "schema": {
+              "$ref": "#/definitions/user_response"
+            }
+          }
+        }
+      }
+    },
+    "/user_Carts/deleteProductFromUserCart": {
+      "delete": {
+        "tags": [
+          "User Cart"
+        ],
+        "description": "Delete a product from the use cart.",
+        "security": [
+          {
+            "oauth_login": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "example": "5f3fd3a4b6f932484ed2469b",
+            "description": "insert userId"
+          },
+          {
+            "name": "productId",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "example": "5f3fd3a4b6f932484ed2469b",
+            "description": "insert product_id."
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfull",
             "schema": {
               "$ref": "#/definitions/user_response"
             }

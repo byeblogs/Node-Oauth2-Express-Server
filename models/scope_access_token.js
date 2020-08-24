@@ -9,7 +9,7 @@ let scopeSchema = new Schema({
     scopeNumber: {
         type: String,
         required: true,
-        ref:'AccessToken'
+        ref: 'AccessToken'
     },
     permissions: [],
 }, { timestamps: true })

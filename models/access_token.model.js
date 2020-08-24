@@ -16,7 +16,7 @@ let accessTokenSchema = new Schema({
     userId: {
         type: Schema.Types.ObjectId,
         required: true,
-        ref:'AuthUser'
+        ref: 'AuthUser'
     },
 }, { timestamps: true })
 

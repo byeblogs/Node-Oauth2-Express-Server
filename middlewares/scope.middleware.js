@@ -9,7 +9,7 @@ const scopeModel = require('../models/scope_access_token');
  * Checks the scope of the access-token.            *
  ****************************************************/
 const scopeCheck = async (req, res, next) => {
-    
+
     try {
         const method = req['method'];
         const protocol = req['protocol'];

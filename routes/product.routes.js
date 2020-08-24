@@ -1,7 +1,7 @@
 'use strict';
 
 // Importing required modules.
-const userMiddleware = require ('../middlewares/user.middleware');
+const userMiddleware = require('../middlewares/user.middleware');
 const productController = require('../controllers/product.controller');
 
 const scopeMiddleware = require('../middlewares/scope.middleware');

@@ -10,7 +10,7 @@ let userCartSchema = new Schema({
     userId: {
         type: Schema.Types.ObjectId,
         required: true,
-        ref:'AuthUser'
+        ref: 'AuthUser'
     },
     product_id: {
         type: Schema.Types.ObjectId,

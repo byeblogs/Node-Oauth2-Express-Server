@@ -23,7 +23,7 @@ app.use(app.oauth.errorHandler());
 /****************************************************
  * Routes for  the user cart.                       *
  ****************************************************/
-userCartRoutes.post('/addProductToUserCart', app.oauth.authorise(), userMiddleware.checkTokenAndUserId, scopeMiddleware.scopeCheck, userCartMiddleware.checkProductInUserCart,productMiddleware.checkProductById, userCartController.addProductToUserCart);
+userCartRoutes.post('/addProductToUserCart', app.oauth.authorise(), userMiddleware.checkTokenAndUserId, scopeMiddleware.scopeCheck, userCartMiddleware.checkProductInUserCart, productMiddleware.checkProductById, userCartController.addProductToUserCart);
 userCartRoutes.delete('/deleteProductFromUserCart', app.oauth.authorise(), scopeMiddleware.scopeCheck, userCartController.deleteProductFromUserCart);
 userCartRoutes.get('/getAllProductOfUserByUserId', app.oauth.authorise(), userCartController.getAllProductOfUserByUserId);
 

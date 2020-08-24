@@ -22,7 +22,7 @@ let productSchema = new Schema({
     product_category_id: {
         type: Schema.Types.ObjectId,
         required: true,
-        ref:'Category'
+        ref: 'Category'
     }
 }, { timestamps: true })
 

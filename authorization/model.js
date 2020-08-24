@@ -73,7 +73,7 @@ function getAccessToken(bearerToken, callback) {
             else {
                 const accessToken = {
                     user: userDetails.get('userId'),
-                    token:userDetails,
+                    token: userDetails,
                     expires: null
                 }
                 callback(false, accessToken);
@@ -86,7 +86,7 @@ function getAccessToken(bearerToken, callback) {
 
 // Exporting module.
 return module.exports = {
-    
+
     getClient: getClient,
 
     grantTypeAllowed: grantTypeAllowed,
