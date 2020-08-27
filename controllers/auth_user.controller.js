@@ -30,7 +30,7 @@ const register = async (req, res) => {
     catch (error) {
         return res.status(401).json({ status: 401, message: "Something wents wrong", error: error });
     }
-}
+};
 /****************************************END*************************************/
 
 
@@ -38,5 +38,6 @@ const register = async (req, res) => {
 return module.exports = {
 
     register: register
-}
+
+};
 /****************************************END*************************************/

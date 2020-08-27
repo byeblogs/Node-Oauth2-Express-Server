@@ -7,7 +7,7 @@ const userCartModel = require('../models/user_cart.model');
 /****************************************************
  * Add Product in user cart API.                    *
  ****************************************************/
-exports.addProductToUserCart = (req, res) => {
+const addProductToUserCart = (req, res) => {
     try {
         var userId = req['body']['userId'];
         var product_id = req['body']['product_id'];
@@ -22,14 +22,14 @@ exports.addProductToUserCart = (req, res) => {
     } catch (error) {
         return res.status(401).json({ status: 401, message: "Something wents wrong", error: error });
     }
-}
+};
 /****************************************END*************************************/
 
 
 /****************************************************
  * Delete Product from user cart API.               *
  ****************************************************/
-exports.deleteProductFromUserCart = (req, res) => {
+const deleteProductFromUserCart = (req, res) => {
     try {
         const product_id = req['query']['productId'];
         const userId = req['query']['userId'];
@@ -45,14 +45,14 @@ exports.deleteProductFromUserCart = (req, res) => {
     } catch (error) {
         return res.status(401).json({ status: 401, message: "Something wents wrong", error: error });
     }
-}
+};
 /****************************************END*************************************/
 
 
 /****************************************************
  * Get All Product in user cart API.                *
  ****************************************************/
-exports.getAllProductOfUserByUserId = (req, res) => {
+const getAllProductOfUserByUserId = (req, res) => {
     try {
         const userId = req['query']['id'];
         if (!userId)
@@ -69,5 +69,16 @@ exports.getAllProductOfUserByUserId = (req, res) => {
     } catch (error) {
         return res.status(401).json({ status: 401, message: "Something wents wrong", error: error });
     }
-}
+};
+/****************************************END*************************************/
+
+
+// Exporting User Cart Controller.
+return module.exports = {
+
+    addProductToUserCart:addProductToUserCart,
+    deleteProductFromUserCart:deleteProductFromUserCart,
+    getAllProductOfUserByUserId:getAllProductOfUserByUserId
+    
+};
 /****************************************END*************************************/

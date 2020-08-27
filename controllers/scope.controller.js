@@ -10,7 +10,7 @@ const scopeModel = require('../models/scope_access_token');
  * If admin creates the a scope that is already     * 
  * registered by that name then it updates that one.*                        
  ****************************************************/
-exports.addScope = async (req, res) => {
+const addScope = async (req, res) => {
     try {
         var isScopeExists = req['isScopeExists'];
         if (isScopeExists !== false) {
@@ -44,5 +44,14 @@ exports.addScope = async (req, res) => {
     } catch (error) {
         return res.status(401).json({ status: 401, message: "Something wents wrong", error: error });
     }
-}
+};
+/****************************************END*************************************/
+
+
+// Exporting Scope Controller.
+return module.exports = {
+
+    addScope:addScope
+    
+};
 /****************************************END*************************************/

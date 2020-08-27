@@ -38,7 +38,7 @@ const encryptPassword = async (req, res, next) => {
             }
         })
     }
-}
+};
 /****************************************END*************************************/
 
 
@@ -53,7 +53,7 @@ const checkAdmin = async (req, res, next) => {
     else {
         return next();
     }
-}
+};
 /****************************************END*************************************/
 
 
@@ -69,7 +69,7 @@ const checkTokenAndUserId = (req, res, next) => {
     } catch (error) {
         return res.status(401).json({ status: 401, message: "Something wents wrong", error: error });
     }
-}
+};
 /****************************************END*************************************/
 
 

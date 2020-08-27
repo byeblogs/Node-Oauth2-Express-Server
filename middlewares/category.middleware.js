@@ -25,7 +25,7 @@ const checkCategoryByName = async (req, res, next) => {
     } catch (error) {
         return res.status(400).json({ status: 400, message: "Something wents wrong", error: error });
     }
-}
+};
 /****************************************END*************************************/
 
 
@@ -43,7 +43,7 @@ const checkCategoryById = async (req, res, next) => {
     } catch (error) {
         return res.status(401).json({ status: 401, message: "Something wents wrong.", error: error });
     }
-}
+};
 /****************************************END*************************************/
 
 
@@ -53,5 +53,5 @@ return module.exports = {
     checkCategoryByName: checkCategoryByName,
     checkCategoryById: checkCategoryById
 
-}
+};
 /****************************************END*************************************/

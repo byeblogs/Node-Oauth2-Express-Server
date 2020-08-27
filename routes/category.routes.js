@@ -5,24 +5,15 @@ const categoryController = require('../controllers/category.controller');
 const userMiddleware = require('../middlewares/user.middleware');
 const categoryMiddleware = require('../middlewares/category.middleware');
 
-const oAuth2Server = require('node-oauth2-server');
-const authModel = require('../authorization/model');
-const express = require('express');
-const categoryRoutes = express.Router();
-var app = express();
-
-// Initializes Outh2Server using express.
-app.oauth = oAuth2Server({
-    model: authModel,
-    grants: ['password'],
-    debug: true
-});
-app.use(app.oauth.errorHandler());
 
 /****************************************************
  * Routes for the categories.                       *
  ****************************************************/
-categoryRoutes.post('/create_category', app.oauth.authorise(), userMiddleware.checkAdmin, categoryMiddleware.checkCategoryByName, categoryController.create_category);
+const categoryRoutes = (expressApp , categoryRoutes) => {
+    categoryRoutes.post('/create_category', expressApp.oauth.authorise(), userMiddleware.checkAdmin, categoryMiddleware.checkCategoryByName, categoryController.create_category);
+    return categoryRoutes;
+};
+
 
 // Exporting category routes.
 module.exports = categoryRoutes;

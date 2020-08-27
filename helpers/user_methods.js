@@ -8,7 +8,7 @@ const decryptPassHelper = require('../helpers/decrypt_password');
 /****************************************************
  * Checks whether user record is there or not in db.*
  ****************************************************/
-exports.findUser = (username) => {
+const findUser = (username) => {
     var username = username;
     return new Promise((resolve, reject) => {
         try {
@@ -21,14 +21,14 @@ exports.findUser = (username) => {
             reject(error);
         }
     });
-}
+};
 /****************************************END*************************************/
 
 
 /****************************************************
  * Registers the user in db.                         *
  ****************************************************/
-exports.createUser = (userDetails) => {
+const createUser = (userDetails) => {
     return new Promise((resolve, reject) => {
         try {
             userDetails.save(userDetails, (error, createdUser) => {
@@ -39,14 +39,14 @@ exports.createUser = (userDetails) => {
             reject(error);
         }
     });
-}
+};
 /****************************************END*************************************/
 
 
 /****************************************************
  * Checks the user is Admin or not.                 *
  ****************************************************/
-exports.isAdmin = (userId) => {
+const isAdmin = (userId) => {
     return new Promise((resolve, reject) => {
         try {
             authUserModel.find({ _id: userId }, (error, found) => {
@@ -62,17 +62,17 @@ exports.isAdmin = (userId) => {
             reject(error);
         }
     });
-}
+};
 /****************************************END*************************************/
 
 
 /****************************************************
  * Checks user using username , password            *
  ****************************************************/
-exports.checkUserFromCredentials = (username, password) => {
+const checkUserFromCredentials = (username, password) => {
     return new Promise((resolve, reject) => {
         try {
-            this.findUser(username)
+            findUser(username)
                 .then(async (userDetails) => {
                     if (userDetails === "false") resolve("false");
                     else return await decryptPassHelper.decrypt_password(password, userDetails['password'])
@@ -90,5 +90,17 @@ exports.checkUserFromCredentials = (username, password) => {
             reject(error);
         }
     });
-}
+};
+/****************************************END*************************************/
+
+
+// Exporting user helper
+return module.exports = {
+
+    findUser:findUser,
+    createUser:createUser,
+    isAdmin:isAdmin,
+    checkUserFromCredentials:checkUserFromCredentials
+    
+};
 /****************************************END*************************************/

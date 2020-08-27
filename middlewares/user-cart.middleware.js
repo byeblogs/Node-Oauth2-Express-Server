@@ -25,7 +25,7 @@ const checkProductInUserCart = async (req, res, next) => {
     } catch (error) {
         return res.status(400).json({ status: 400, message: "Something wents wrong", error: error });
     }
-}
+};
 /****************************************END*************************************/
 
 
@@ -34,5 +34,5 @@ return module.exports = {
 
     checkProductInUserCart: checkProductInUserCart
 
-}
+};
 /****************************************END*************************************/

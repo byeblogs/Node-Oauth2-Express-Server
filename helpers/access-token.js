@@ -4,18 +4,18 @@
 const accessTokenModel = require('../models/access_token.model');
 const authUserModel = require('../models/auth_user.model');
 let requestCustom;
-exports.setScope = (req, res, next) => {
 
+const setScope = (req, res, next) => {
     requestCustom = req;
     next();
-}
+};
 
 
 /****************************************************
  * Save token of the Login user.                    *
  * By default scope of the token is "A"             *
  ****************************************************/
-exports.saveToken = (accessToken, userId) => {
+const saveToken = (accessToken, userId) => {
     var scope = requestCustom['query']['scope'];
     var scope = scope ? scope.toUpperCase() : "A";
     let accessTokenObj = new accessTokenModel({
@@ -33,14 +33,14 @@ exports.saveToken = (accessToken, userId) => {
             reject(error);
         }
     })
-}
+};
 /****************************************END*************************************/
 
 
 /****************************************************
  * Checks token is saved in db or not.              *
  ****************************************************/
-exports.checkTokenInDB = (accessToken) => {
+const checkTokenInDB = (accessToken) => {
     return new Promise((resolve, reject) => {
         try {
             accessTokenModel.find({ token: accessToken })
@@ -54,5 +54,16 @@ exports.checkTokenInDB = (accessToken) => {
             reject(error);
         }
     })
-}
+};
+/****************************************END*************************************/
+
+
+// Exporting access-token helper
+return module.exports = {
+
+    setScope:setScope,
+    checkTokenInDB:checkTokenInDB,
+    saveToken:saveToken
+    
+};
 /****************************************END*************************************/

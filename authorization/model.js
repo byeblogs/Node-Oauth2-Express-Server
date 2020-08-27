@@ -19,7 +19,7 @@ function getClient(clientID, clientSecret, callback) {
     }
 
     callback(false, client);
-}
+};
 /****************************************END*************************************/
 
 
@@ -29,7 +29,7 @@ function getClient(clientID, clientSecret, callback) {
 function grantTypeAllowed(clientID, grantType, callback) {
 
     callback(false, true);
-}
+};
 /****************************************END*************************************/
 
 
@@ -37,7 +37,6 @@ function grantTypeAllowed(clientID, grantType, callback) {
  * Check User.                                      *
  ****************************************************/
 function getUser(username, password, callback) {
-
     //try and get the user using the user's credentials
     userHelper.checkUserFromCredentials(username, password)
         .then((isCorrect) => {
@@ -45,7 +44,7 @@ function getUser(username, password, callback) {
             else callback(false, isCorrect);
         })
         .catch(error => callback(error, null))
-}
+};
 /****************************************END*************************************/
 
 
@@ -53,12 +52,11 @@ function getUser(username, password, callback) {
  * Create token if the user is valid User.          *
  ****************************************************/
 function saveAccessToken(accessToken, clientID, expires, user, callback) {
-
     //save the accessToken along with the user.id
     accessTokenHelper.saveToken(accessToken, user['_id'])
         .then(() => callback(null))
         .catch(error => callback(error))
-}
+};
 /****************************************END*************************************/
 
 
@@ -81,7 +79,7 @@ function getAccessToken(bearerToken, callback) {
         }).catch((err) => {
             callback(true, null);
         });
-}
+};
 /****************************************END*************************************/
 
 // Exporting module.

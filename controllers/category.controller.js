@@ -7,7 +7,7 @@ const categoryModel = require('../models/category.model');
 /****************************************************
  * Create category API.                             *
  ****************************************************/
-exports.create_category = (req, res) => {
+const create_category = (req, res) => {
     try {
         var category_name = req['body']['category_name'];
         var category_description = req['body']['category_description'];
@@ -22,5 +22,14 @@ exports.create_category = (req, res) => {
     } catch (error) {
         return res.status(401).json({ status: 401, message: "Something wents wrong", error: error });
     }
-}
+};
+/****************************************END*************************************/
+
+
+// Exporting Category Controller.
+return module.exports = {
+
+    create_category: create_category
+
+};
 /****************************************END*************************************/

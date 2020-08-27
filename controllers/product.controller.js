@@ -7,7 +7,7 @@ const productModel = require('../models/product.model');
 /****************************************************
  * Create product API.                              *
  ****************************************************/
-exports.create_product = async (req, res) => {
+const create_product = async (req, res) => {
     try {
         var product_name = req['body']['product_name'];
         var product_description = req['body']['product_description'];
@@ -27,14 +27,14 @@ exports.create_product = async (req, res) => {
     catch (error) {
         return res.status(401).json({ status: 401, message: "Something wents wrong", error: error });
     }
-}
+};
 /****************************************END*************************************/
 
 
 /****************************************************
  * Delete product API.                              *
  ****************************************************/
-exports.delete_product = (req, res) => {
+const delete_product = (req, res) => {
     try {
         const product_id = req['query']['id'];
         if (!product_id) return res.status(404).json({ status: 404, message: "Product id not found" });
@@ -46,14 +46,14 @@ exports.delete_product = (req, res) => {
     } catch (error) {
         return res.status(401).json({ status: 401, message: "Something wents wrong", error: error });
     }
-}
+};
 /****************************************END*************************************/
 
 
 /****************************************************
  * Get product By Product id API.                   *
  ****************************************************/
-exports.getProductByProductId = (req, res) => {
+const getProductByProductId = (req, res) => {
     try {
         const product_id = req['query']['id'];
         if (!product_id) return res.status(404).json({ status: 404, message: "Product id not found" });
@@ -65,5 +65,16 @@ exports.getProductByProductId = (req, res) => {
     } catch (error) {
         return res.status(401).json({ status: 401, message: "Something wents wrong", error: error });
     }
-}
+};
+/****************************************END*************************************/
+
+
+// Exporting Product Controller.
+return module.exports = {
+
+    create_product: create_product,
+    delete_product:delete_product,
+    getProductByProductId,getProductByProductId
+
+};
 /****************************************END*************************************/

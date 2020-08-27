@@ -31,7 +31,7 @@ const scopeCheck = async (req, res, next) => {
     } catch (error) {
         return res.status(401).json({ status: 401, message: "Something wents wrong", error: error });
     }
-}
+};
 /****************************************END*************************************/
 
 
@@ -48,7 +48,7 @@ const getScopesByScopeNumber = async (scopeNumber, res, cb) => {
     } catch (error) {
         return res.status(401).json({ status: 401, message: "Error in finding", error: error });
     }
-}
+};
 /****************************************END*************************************/
 
 
@@ -99,7 +99,7 @@ const isScopeFieldsValid = async (req, res, next) => {
     } catch (error) {
         return res.status(401).json({ status: 401, message: "Error in finding", error: error });
     }
-}
+};
 /****************************************END*************************************/
 
 
@@ -110,5 +110,5 @@ return module.exports = {
     isScopeFieldsValid: isScopeFieldsValid,
     scopeCheck: scopeCheck,
 
-}
+};
 /****************************************END*************************************/
