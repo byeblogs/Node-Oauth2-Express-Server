@@ -9,9 +9,17 @@ If you are familiar to Nodejs or Javascript (ofcourse thats why you are here). Y
 Today there are many ways to authorize and authenticate the user. One of them is Oauth2 that is used for third party login like **login to Google** and **login to Facebook**.
 The way this third party login works is first the Google or any thirs party server provide the authentication code to the first party and then that first party again send that authentication code to the third party server. Now that server revert back to clientId and secretId that is passed with our credentials.
 
+**_before starting further, I would like to tell that here we are using password grant_type and our client_id and secret_id is null (as we our Oauth2 and application server is same)._**
+
 **What happen when the Oauth2 server and application server is the same.**
 Today, we are here to deal with such a scenerio where both servers is the same.
-For this, we will use N
+For this, we will use node-oauth2-server that is a very good node module with error handling.
+
+#### How to use it ??
+So, first import the node-oauth2-server using require keyword in the index.js or app.js file.
+Then, create a model.js file in any folder or wherever you want. And copy the code that is in our authorization/model.js file.
+Now, check our projects index.js file where we have use the node-oauth2-module with express server and do in the same manner you will get working.
+
 # Test this
 hello teasting
 
