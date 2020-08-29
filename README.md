@@ -9,6 +9,9 @@ If you are familiar to Nodejs or Javascript (ofcourse thats why you are here). Y
 Today there are many ways to authorize and authenticate the user. One of them is Oauth2 that is used for third party login like **login to Google** and **login to Facebook**.
 The way this third party login works is first the Google or any thirs party server provide the authentication code to the first party and then that first party again send that authentication code to the third party server. Now that server revert back to clientId and secretId that is passed with our credentials.
 
+**What happen when the Oauth2 server and application server is the same.**
+Today, we are here to deal with such a scenerio where both servers is the same.
+For this, we will use N
 # Test this
 hello teasting
 
