@@ -45,53 +45,58 @@ Login API is to login the registered user using Oauth2 mechanism where the requi
 **grant_type** should be password as this is credential based authentication.
 
 
-#### Category (only Admin have permission to access this API's)
+#### Category
 This API's is used for the operations on category i.e. the any product have a category type. This consists of one API _create_category_.
-###### Create Category API
+###### Create Category API (only Admin have permission to access this API)
 Create Category API is used to create a category like vehicles that contains various cars and bikes informations. The required things are **_category_name_**, **_category_description_**.\
 **category_name** should be any name of the category.\
 **category_description** should be the description about that category.
 
 
-#### Product (admin can access 2 API's and user can access only 1 API)
+#### Product
 This API's is used for the operations on product. This consists of 3 API's _create_product, getProductByProductId, delete_product_.
-###### Create Product API
+###### Create Product API (only Admin have permission to access this API)
 This API is used to create a product like Pulsar,a bike from Bajaj. The required things are **_product_name_**, **_product_description_**, **_product_price_**, **_category_id_**.\
 **product_name** should be any name like Pulsar.\
 **product_description** should be the description about that product.\
 **product_price** should be the price of that product in integer.\
 **category_id** should be the id of the category that product belong to.
 
-###### Get Product API
+###### Get Product by Id API  (both admin and user can access this API)
 This API is used to get the product details by the product id. The required things are **_id_**.\
 **id** should be the valid product id. If invalid, you will get error.
 
-###### Delete Product API
+###### Delete Product API (only Admin have permission to access this API)
 This API is used to delete a particular product bu its id. The required things are **_id_**.\
 **id** should be valid product id, If invalid, you will get error.
 
 
-#### Scope (only Admin have permission to access this API's)
+#### Scope
 This API's is used for the operations on scopes that an access-token can have. This consists of 1 API _addScope_.
-###### Add Scope
+###### Add Scope (only Admin have permission to access this API)
 This API is used to add an scope and that scope have permissions to some endpoints that an access-token can access. The required things are **_scopeNumber_**, **_permissions_**.\
 **scopeNumber** should be any alphabet like A or B.\
 **permissions** should be an array of endpoints like http://localhost:5000/products/create_product. If not like this you will get an error.
 
 
-#### User Cart (both admin and user can access this API's)
+#### User Cart
 This API's is used for the operations on user carts that the user can add product to their cart or delete a product from their cart or more.\
 This consists of 3 API's _addProductToUserCart_, _getAllProductOfUserByUserId_, _deleteProductFromUserCart_.
-###### Add Product to User Cart API
+###### Add Product to User Cart API (both admin and user can access this API)
 This API is used to add a product to users cart that a user want to add. The required things are **_userId_**, **_product_id_**.\
 **userId** should be a valid user id otherwise you will get an error.\
 **product_id** should be a valid product id otherwise you will get an error.
 
-###### Get All product of User API
+###### Get All product of User API (both admin and user can access this API)
 This API is used to get all the product that the user has already added to their cart. The required things are **_userId_**.\
 **userId** should be a valid user id otherwise you will get an error.
 
-###### Delete Product from User Cart API
+###### Delete Product from User Cart API (both admin and user can access this API)
 This APi is used to delete a product from the user cart. The required things are **_userId_**, **_product_id_**.\
 **userId** should be a valid user id otherwise you will get an error.\
 **product_id** should be a valid product id otherwise you will get an error.
+
+**_Note_** :-\
+_When any user login by-default the access-token that user get have a scopeNumber 'A'. So, if there is no permissions given to scopeNumber 'A' then the access-token cannot access the **addProductToUserCart**, **deleteProductFromUserCart** , **getProductByProductId** API's.\
+So, you have to create a scope of scopeNumber 'A' and give the following permissions of API endpoints that you want to give.\
+Also, If you create any scope with scopeNumber that is already in you DB then it will get updated. This mean scopeNumber should be different for every scope you want to create, if same then the scope get updated.
