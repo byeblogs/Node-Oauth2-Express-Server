@@ -10,23 +10,23 @@
   "tags": [
     {
       "name": "AuthUsers",
-      "description": "API for the User related operations (_Any User_).  _**Find out more about [AuthUser](https://github.com/thezaidsheikh/Outh-Product-NodeJS-cz/blob/master/README.md#test2-this) API**_."
+      "description": "API for the User related operations (_Any User_).  _**Find out more about [AuthUser](https://github.com/thezaidsheikh/Node-Oauth2-Express-Server/blob/master/README.md#Auth-User) API**_."
     },
     {
       "name": "Category",
-      "description": "API for the Category related operations (_Only Admin_).  _**Find out more about [Category](https://github.com/thezaidsheikh/Outh-Product-NodeJS-cz/blob/master/README.md#test2-this) API**_."
+      "description": "API for the Category related operations (_Only Admin_).  _**Find out more about [Category](https://github.com/thezaidsheikh/Outh-Product-NodeJS-cz/blob/master/README.md#Category) API**_."
     },
     {
       "name": "Product",
-      "description": "API for the Product related operations.  _**Find out more about [Product](https://github.com/thezaidsheikh/Outh-Product-NodeJS-cz/blob/master/README.md#test2-this) API**_."
+      "description": "API for the Product related operations.  _**Find out more about [Product](https://github.com/thezaidsheikh/Outh-Product-NodeJS-cz/blob/master/README.md#Product) API**_."
     },
     {
       "name": "Scope",
-      "description": "API for the Scope related operations (_Only Admin_).  _**Find out more about [Scope](https://github.com/thezaidsheikh/Outh-Product-NodeJS-cz/blob/master/README.md#test2-this) API**_."
+      "description": "API for the Scope related operations (_Only Admin_).  _**Find out more about [Scope](https://github.com/thezaidsheikh/Outh-Product-NodeJS-cz/blob/master/README.md#Scope) API**_."
     },
     {
       "name": "User Cart",
-      "description": "API for the User Cart related operations (_Any User_).  _**Find out more about [User Cart](https://github.com/thezaidsheikh/Outh-Product-NodeJS-cz/blob/master/README.md#test2-this) API**_."
+      "description": "API for the User Cart related operations (_Any User_).  _**Find out more about [User Cart](https://github.com/thezaidsheikh/Outh-Product-NodeJS-cz/blob/master/README.md#User-Cart) API**_."
     }
   ],
   "schemes": [
