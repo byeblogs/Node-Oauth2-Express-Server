@@ -97,6 +97,6 @@ This APi is used to delete a product from the user cart. The required things are
 **product_id** should be a valid product id otherwise you will get an error.
 
 **_Note_** :-\
-_When any user login by-default the access-token that user get have a scopeNumber 'A'. So, if there is no permissions given to scopeNumber 'A' then the access-token cannot access the **addProductToUserCart**, **deleteProductFromUserCart** , **getProductByProductId** API's.\
-So, you have to create a scope of scopeNumber 'A' and give the following permissions of API endpoints that you want to give.\
-Also, If you create any scope with scopeNumber that is already in you DB then it will get updated. This mean scopeNumber should be different for every scope you want to create, if same then the scope get updated.
+_When any user login by-default the access-token that user get have a scopeNumber 'A'. So, if there is no permissions given to scopeNumber 'A' then the access-token cannot access the **addProductToUserCart**, **deleteProductFromUserCart** , **getProductByProductId** API's_.\
+_So, you have to create a scope of scopeNumber 'A' and give the following permissions of API endpoints that you want to give_.\
+_Also, If you create any scope with scopeNumber that is already in you DB then it will get updated. This mean scopeNumber should be different for every scope you want to create, if same then the scope get updated_.
